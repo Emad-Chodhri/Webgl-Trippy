@@ -101,9 +101,8 @@
     } else {
         // Desktop style: Render the game canvas in a window that can be maximized to fullscreen:
 
-
-        canvas.style.width = "100%";
-        canvas.style.height = "100%";
+        canvas.style.width = "98.9vw";
+        canvas.style.height = "100vh";
         const hash = window.location.hash.substring(1);
         const params = new URLSearchParams(hash);
         const tgWebAppData = params.get('tgWebAppData');

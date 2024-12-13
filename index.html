@@ -127,6 +127,11 @@
     // Detect Telegram Mobile
     const isTelegramMobile = tgWebAppData && /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
+    console.log("tgWebAppData", tgWebAppData)
+    console.log("isTelegramDesktop", isTelegramDesktop)
+    console.log("isTelegramMobile", isTelegramMobile)
+
+
     if (!tgWebAppData) {
         document.body.appendChild(script);
         console.log("user is not in telegram")

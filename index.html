@@ -127,23 +127,17 @@
     // Detect Telegram Mobile
     const isTelegramMobile = tgWebAppData && /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
-    if (isTelegramDesktop) {
-        console.log("User is using Telegram Desktop");
-        // Take actions specific to Telegram Desktop
-        document.getElementById('fullscreen-overlay').style.display = 'none';
+    if (!tgWebAppData) {
+        document.body.appendChild(script);
+        console.log("user is not in telegram")
     } else if (isTelegramMobile) {
-        console.log("User is using Telegram Mobile");
         document.body.appendChild(script);
-        // Take actions specific to Telegram Mobile
-        document.getElementById('fullscreen-overlay').style.display = 'flex';
+        console.log("user is in mobile telegram")
     } else {
-        console.log("User is not in Telegram");
-        // Normal behavior for browsers
-        document.body.appendChild(script);
+        console.log("user is in telegram ")
     }
 
 
-    // document.body.appendChild(script);
     const externalUrlFun = () => {
         const url = 'https://emad-chodhri.github.io/Webgl-Trippy';
         window.open(url, '_blank');

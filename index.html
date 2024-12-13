@@ -73,7 +73,7 @@
     // var instanceObj = null;
     if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
         // Mobile device style: fill the whole browser client area with the game canvas:
-
+        console.log("navigator.userAgent", navigator.userAgent)
         var meta = document.createElement('meta');
         meta.name = 'viewport';
         meta.content = 'width=device-width, height=device-height, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes';
@@ -143,7 +143,7 @@
     }
 
 
-    document.body.appendChild(script);
+    // document.body.appendChild(script);
     const externalUrlFun = () => {
         const url = 'https://emad-chodhri.github.io/Webgl-Trippy';
         window.open(url, '_blank');

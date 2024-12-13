@@ -120,7 +120,9 @@
     const hash = window.location.hash.substring(1);
     const params = new URLSearchParams(hash);
     const tgWebAppData = params.get('tgWebAppData');
+
     const isTelegramDesktop = /TelegramDesktop/i.test(navigator.userAgent);
+
     console.log("isTelegramDesktop", isTelegramDesktop)
     if (!tgWebAppData && !isTelegramDesktop) {
         console.log("isTelegramDesktop in",isTelegramDesktop)

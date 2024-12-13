@@ -76,7 +76,7 @@
         showBanner: unityShowBanner,
     };
 
-    var instanceObj = null;
+    // var instanceObj = null;
     if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
         // Mobile device style: fill the whole browser client area with the game canvas:
 
@@ -99,7 +99,7 @@
 
         if (tgWebAppData) {
             document.getElementById('fullscreen-overlay').style.display = 'flex';
-            instanceObj.SendMessage('AudioManager', 'MuteAllSounds');
+            // instanceObj.SendMessage('AudioManager', 'MuteAllSounds');
         }
     }
 
@@ -111,10 +111,11 @@
         createUnityInstance(canvas, config, (progress) => {
             progressBarFull.style.width = 100 * progress + "%";
         }).then((unityInstance) => {
-            unityInstance = instanceObj
+            // unityInstance = instanceObj
             loadingBar.style.display = "none";
             fullscreenButton.onclick = () => {
                 unityInstance.SetFullscreen(1);
+
             };
 
 

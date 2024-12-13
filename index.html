@@ -135,16 +135,13 @@
     console.log("isTelegramMobile:", isTelegramMobile);
     console.log("tgWebAppData:", tgWebAppData);
 
-    if (isTelegramDesktop) {
-        console.log("isTelegramDesktop:", isTelegramDesktop);
-        console.log("isTelegramMobile:", isTelegramMobile);
-        console.log("tgWebAppData:", tgWebAppData)
-        // this script is used to load unity game  and we should stop the instance to not laod at telegram
-        console.log("we should stop the game to load")
-    } else {
+    if (!isTelegramDesktop) {
         document.body.appendChild(script);
         console.log("user is not in desktop telegram => game is loading")
+        // this script is used to load unity game  and we should stop the instance to not laod at telegram
 
+    } else {
+        console.log("we should stop the game to load")
     }
 
 

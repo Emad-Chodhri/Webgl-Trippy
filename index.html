@@ -123,6 +123,7 @@
     const tgWebAppData = params.get('tgWebAppData');
 
     if (!tgWebAppData) {
+        console.log("user is not in telegram=>game is loading")
         document.body.appendChild(script);
     }else{
         console.log("we should stop the game to load")

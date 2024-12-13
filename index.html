@@ -117,30 +117,31 @@
         });
     };
 
+    // Corrected Telegram Environment Detection
     const hash = window.location.hash.substring(1);
     const params = new URLSearchParams(hash);
     const tgWebAppData = params.get('tgWebAppData');
 
-    // Detect Telegram Desktop
-    const isTelegramDesktop = tgWebAppData && /TelegramDesktop/i.test(navigator.userAgent);
-
-    // Detect Telegram Mobile
+    // Detect Telegram Environment Correctly
+    const isTelegramDesktop = tgWebAppData && navigator.userAgent.includes("TelegramDesktop");
     const isTelegramMobile = tgWebAppData && /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
-    console.log("tgWebAppData", tgWebAppData)
-    console.log("isTelegramDesktop", isTelegramDesktop)
-    console.log("isTelegramMobile", isTelegramMobile)
-
+    console.log("tgWebAppData:", tgWebAppData);
+    console.log("isTelegramDesktop:", isTelegramDesktop);
+    console.log("isTelegramMobile:", isTelegramMobile);
 
     if (!tgWebAppData) {
         document.body.appendChild(script);
-        console.log("user is not in telegram")
+        console.log("User is not in Telegram");
     } else if (isTelegramMobile) {
         document.body.appendChild(script);
-        console.log("user is in mobile telegram")
+        console.log("User is in Telegram Mobile");
+    } else if (isTelegramDesktop) {
+        console.log("User is in Telegram Desktop. Game will not load.");
     } else {
-        console.log("user is in telegram ")
+        console.log("User is in Telegram environment, but type is not identified.");
     }
+
 
 
     const externalUrlFun = () => {

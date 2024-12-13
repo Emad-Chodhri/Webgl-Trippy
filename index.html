@@ -121,7 +121,7 @@
     const params = new URLSearchParams(hash);
     const tgWebAppData = params.get('tgWebAppData');
     const isTelegramDesktop = /TelegramDesktop/i.test(navigator.userAgent);
-    if (!tgWebAppData && isTelegramDesktop) {
+    if (!tgWebAppData && !isTelegramDesktop) {
         console.log("user is not in telegram => game is loading")
         // this script is used to load unity game  and we should stop the instance to not laod at telegram
         document.body.appendChild(script);

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-us">
+<html lang="en-us" style="width:100%; height:100%">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -7,9 +7,9 @@
     <link rel="shortcut icon" href="TemplateData/favicon.ico">
     <link rel="stylesheet" href="TemplateData/style.css">
 </head>
-<body>
-<div id="unity-container" class="unity-desktop">
-    <canvas id="unity-canvas" width=640 height=360 tabindex="-1"></canvas>
+<body style="width:100%; height:100%">
+<div id="unity-container" class="unity-desktop" style="width:100%; height:100%">
+    <canvas id="unity-canvas" tabindex="-1" style="width:100%; height:100%"></canvas>
     <div id="unity-loading-bar">
         <div id="unity-logo"></div>
         <div id="unity-progress-bar-empty">
@@ -38,12 +38,6 @@
     var fullscreenButton = document.querySelector("#unity-fullscreen-button");
     var warningBanner = document.querySelector("#unity-warning");
 
-    // Shows a temporary message banner/ribbon for a few seconds, or
-    // a permanent error message on top of the canvas if type=='error'.
-    // If type=='warning', a yellow highlight color is used.
-    // Modify or remove this function to customize the visually presented
-    // way that non-critical warnings and error messages are presented to the
-    // user.
     function unityShowBanner(msg, type) {
         function updateBannerVisibility() {
             warningBanner.style.display = warningBanner.children.length ? 'block' : 'none';
@@ -76,13 +70,7 @@
         showBanner: unityShowBanner,
     };
 
-    // By default, Unity keeps WebGL canvas render target size matched with
-    // the DOM size of the canvas element (scaled by window.devicePixelRatio)
-    // Set this to false if you want to decouple this synchronization from
-    // happening inside the engine, and you would instead like to size up
-    // the canvas DOM size and WebGL render target sizes yourself.
-    // config.matchWebGLToCanvasSize = false;
-
+    // var instanceObj = null;
     if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
         // Mobile device style: fill the whole browser client area with the game canvas:
 
@@ -93,16 +81,12 @@
         container.className = "unity-mobile";
         canvas.className = "unity-mobile";
 
-        // To lower canvas resolution on mobile devices to gain some
-        // performance, uncomment the following line:
-        // config.devicePixelRatio = 1;
-
 
     } else {
         // Desktop style: Render the game canvas in a window that can be maximized to fullscreen:
 
-        canvas.style.width = "98.9vw";
-        canvas.style.height = "100vh";
+        canvas.style.width = "100%";
+        canvas.style.height = "100%";
         const hash = window.location.hash.substring(1);
         const params = new URLSearchParams(hash);
         const tgWebAppData = params.get('tgWebAppData');
@@ -117,12 +101,15 @@
     var script = document.createElement("script");
     script.src = loaderUrl;
     script.onload = () => {
+
         createUnityInstance(canvas, config, (progress) => {
             progressBarFull.style.width = 100 * progress + "%";
         }).then((unityInstance) => {
+            // unityInstance = instanceObj
             loadingBar.style.display = "none";
             fullscreenButton.onclick = () => {
                 unityInstance.SetFullscreen(1);
+
             };
 
 
@@ -131,7 +118,17 @@
         });
     };
 
-    document.body.appendChild(script);
+    const hash = window.location.hash.substring(1);
+    const params = new URLSearchParams(hash);
+    const tgWebAppData = params.get('tgWebAppData');
+
+    if (!tgWebAppData) {
+        console.log("user is not in telegram=>game is loading")
+        // this script is used to load unity game  and we should stop the instance to not laod at telegram
+        document.body.appendChild(script);
+    } else {
+        console.log("we should stop the game to load")
+    }
 
 
     const externalUrlFun = () => {

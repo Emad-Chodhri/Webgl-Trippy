@@ -121,9 +121,16 @@
     const params = new URLSearchParams(hash);
     const tgWebAppData = params.get('tgWebAppData');
 
+    // Detect Telegram Desktop
     const isTelegramDesktop = /TelegramDesktop/i.test(navigator.userAgent);
 
-    console.log("isTelegramDesktop", isTelegramDesktop)
+    // Detect Telegram Mobile
+    const isMobileTelegram =
+        /iPhone|iPad|iPod|Android/i.test(navigator.userAgent) && tgWebAppData;
+
+    // Log environments for debugging
+    console.log("isTelegramDesktop:", isTelegramDesktop);
+    console.log("isMobileTelegram:", isMobileTelegram);
     if (!tgWebAppData && !isTelegramDesktop) {
         console.log("isTelegramDesktop in",isTelegramDesktop)
         console.log("user is not in telegram => game is loading")

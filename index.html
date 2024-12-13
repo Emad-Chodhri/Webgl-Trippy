@@ -131,13 +131,15 @@
     // Log environments for debugging
     console.log("isTelegramDesktop:", isTelegramDesktop);
     console.log("isMobileTelegram:", isMobileTelegram);
-    if (!tgWebAppData && !isTelegramDesktop) {
-        console.log("isTelegramDesktop in",isTelegramDesktop)
-        console.log("user is not in telegram => game is loading")
+
+    if (tgWebAppData && isTelegramDesktop) {
         // this script is used to load unity game  and we should stop the instance to not laod at telegram
-        document.body.appendChild(script);
-    } else {
         console.log("we should stop the game to load")
+    } else {
+        document.body.appendChild(script);
+        console.log("isTelegramDesktop in else",isTelegramDesktop)
+        console.log("user is not in telegram => game is loading")
+
     }
 
 

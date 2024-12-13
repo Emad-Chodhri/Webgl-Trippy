@@ -129,10 +129,13 @@
         /iPhone|iPad|iPod|Android/i.test(navigator.userAgent) && tgWebAppData;
 
     // Log environments for debugging
-    console.log("isTelegramDesktop:", isTelegramDesktop);
-    console.log("isMobileTelegram:", isMobileTelegram);
-
-    if (tgWebAppData && isTelegramDesktop) {
+    console.log("isTelegramDesktop", isTelegramDesktop);
+    console.log("isMobileTelegram", isMobileTelegram);
+    console.log("tgWebAppData", tgWebAppData)
+    if (isTelegramDesktop) {
+        console.log("isTelegramDesktop:", isTelegramDesktop);
+        console.log("isMobileTelegram:", isMobileTelegram);
+        console.log("tgWebAppData:", tgWebAppData)
         // this script is used to load unity game  and we should stop the instance to not laod at telegram
         console.log("we should stop the game to load")
     } else {

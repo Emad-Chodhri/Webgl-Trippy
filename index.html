@@ -126,9 +126,9 @@
     const isTelegramDesktop = tgWebAppData && navigator.userAgent.includes("TelegramDesktop");
     const isTelegramMobile = tgWebAppData && /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
-    console.log("tgWebAppData:", tgWebAppData);
-    console.log("isTelegramDesktop:", isTelegramDesktop);
-    console.log("isTelegramMobile:", isTelegramMobile);
+    // console.log("tgWebAppData:", tgWebAppData);
+    // console.log("isTelegramDesktop:", isTelegramDesktop);
+    // console.log("isTelegramMobile:", isTelegramMobile);
 
     if (!tgWebAppData) {
         document.body.appendChild(script);
@@ -141,8 +141,6 @@
     } else {
         console.log("User is in Telegram environment, but type is not identified.");
     }
-
-
 
     const externalUrlFun = () => {
         const url = 'https://emad-chodhri.github.io/Webgl-Trippy';
